@@ -1,0 +1,8 @@
+{
+    "name": "Crisu83/yii-bootstrap"
+  , "description": "Bootstrap is an extension for the Yii PHP framework that provides a wide range of server-side widgets that allow you to easily use Twitter's Bootstrap together with Yii."
+  , "keywords": ["bootstrap", "yii"]
+  , "homepage": "http://www.cniska.net/yii-bootstrap/"
+  , "author": "Christoffer Niska"
+
+}
