@@ -15,17 +15,18 @@ class Bootstrap extends CApplicationComponent
 	// Bootstrap plugins.
 	const PLUGIN_AFFIX = 'affix';
 	const PLUGIN_ALERT = 'alert';
-    const PLUGIN_BUTTON = 'button';
-    const PLUGIN_CAROUSEL = 'carousel';
-    const PLUGIN_COLLAPSE = 'collapse';
-    const PLUGIN_DROPDOWN = 'dropdown';
-    const PLUGIN_MODAL = 'modal';
-    const PLUGIN_POPOVER = 'popover';
-    const PLUGIN_SCROLLSPY = 'scrollspy';
-    const PLUGIN_TAB = 'tab';
-    const PLUGIN_TOOLTIP = 'tooltip';
-    const PLUGIN_TRANSITION = 'transition';
-    const PLUGIN_TYPEAHEAD = 'typeahead';
+  const PLUGIN_BUTTON = 'button';
+  const PLUGIN_CAROUSEL = 'carousel';
+  const PLUGIN_COLLAPSE = 'collapse';
+  const PLUGIN_DROPDOWN = 'dropdown';
+  const PLUGIN_MODAL = 'modal';
+  const PLUGIN_POPOVER = 'popover';
+  const PLUGIN_SCROLLSPY = 'scrollspy';
+  const PLUGIN_TAB = 'tab';
+  const PLUGIN_TOOLTIP = 'tooltip';
+  const PLUGIN_TRANSITION = 'transition';
+  const PLUGIN_TYPEAHEAD = 'typeahead';
+  const BOOTSTRAP_SRC = '/scripts/vendor/bootstrap2/bootstrap';
 
 	/**
 	 * @var array plugin initial options (name=>options).
@@ -48,7 +49,7 @@ class Bootstrap extends CApplicationComponent
 	public function registerCoreCss()
 	{
 		$filename = YII_DEBUG ? 'bootstrap.css' : 'bootstrap.min.css';
-		Yii::app()->clientScript->registerCssFile($this->getSRCAssetsUrl().'/css/'.$filename);
+		Yii::app()->clientScript->registerCssFile(self::BOOTSTRAP_SRC.'/css/'.$filename);
 	}
 
 	/**
@@ -61,7 +62,7 @@ class Bootstrap extends CApplicationComponent
 		$cs = Yii::app()->getClientScript();
 		$cs->registerMetaTag('width=device-width, initial-scale=1.0', 'viewport');
 		$filename = YII_DEBUG ? 'bootstrap-responsive.css' : 'bootstrap-responsive.min.css';
-		$cs->registerCssFile($this->getSRCAssetsUrl().'/css/'.$filename);
+		$cs->registerCssFile(self::BOOTSTRAP_SRC.'/css/'.$filename);
 	}
 
 	/**
@@ -290,22 +291,6 @@ class Bootstrap extends CApplicationComponent
 			$key = __CLASS__.'.'.md5($name.$selector.serialize($options));
 			$options = !empty($options) ? CJavaScript::encode($options) : '';
 			Yii::app()->clientScript->registerScript($key, "jQuery('{$selector}').{$name}({$options});");
-		}
-	}
-
-	/**
-	* Returns the URL to the published assets folder.
-	* @return string the URL
-	*/
-	protected function getSRCAssetsUrl()
-	{
-		if (isset($this->_srcAssetsUrl))
-			return $this->_srcAssetsUrl;
-		else
-		{
-			$assetsPath = Yii::getPathOfAlias('bootstrapSRC.assets');
-			$assetsUrl = Yii::app()->assetManager->publish($assetsPath, true, -1, $this->forceCopyAssets);
-			return $this->_srcAssetsUrl = $assetsUrl;
 		}
 	}
 
