@@ -49,8 +49,10 @@ class TbDataColumn extends CDataColumn
 	 */
 	public function renderFilterCell()
 	{
-		echo '<td><div class="filter-container">';
+		echo CHtml::openTag('td',$this->filterHtmlOptions);
+		echo '<div class="filter-container">';
 		$this->renderFilterCellContent();
-		echo '</div></td>';
+		echo '</div>';
+		echo '</td>';
 	}
 }
